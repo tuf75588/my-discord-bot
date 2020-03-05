@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-
+const greet = require("./lib/commands/greet");
 const client = new Discord.Client();
 require("dotenv").config();
 client.on("ready", () => {
@@ -17,7 +17,8 @@ client.on("ready", () => {
     });
     return entries.filter(user => !user.bot);
   });
-  console.log(userNames);
 });
+
+client.on("message", greet);
 
 client.login(process.env.DISCORD_TOKEN);
