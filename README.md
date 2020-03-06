@@ -2,10 +2,7 @@
 
 ## TODO
 
-- [ ] Setup Project/Dependencies
-  - [ ] npm i discord.js dotenv nodemon
-- [ ] Setup eslint
-  - [ ] npx eslint --init
-- [ ] Create a Discord Developer Application
-- [ ] Add bot to a server we are manager of
-- [ ]
+- [x] Setup Project/Dependencies
+  - [x] npm i discord.js dotenv nodemon
+- [x] Create a Discord Developer Application
+- [x] Add bot to a server we are manager of
