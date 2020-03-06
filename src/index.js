@@ -42,15 +42,28 @@ client.on("raw", async payload => {
 
   const { t } = payload;
   if (t === "MESSAGE_REACTION_ADD") {
-    const { d: message_id } = payload;
+    const msgId = payload.d.message_id;
 
-    // console.log(message_id); // 685310450912722987
-    console.log(client.channels.cache.get("630448799436767247"));
+    if (msgId === "685565044125335715") {
+      const channelId = payload.d.channel_id;
+      let channel = client.channels.cache.get(channelId);
+      if (channel) {
+        if (client.channels.cache.has(msgId)) {
+          return;
+        } else {
+          let message = await channel.messages.fetch(msgId);
+          let reactions = message.reactions.cache.get("📷");
+          let user = client.users.cache.get(payload.d.user_id);
+          // emit a new message
+          client.emit("messageReactionAdd", reactions, user);
+        }
+      }
+    }
   }
 });
 
 client.on("messageReactionAdd", (reaction, { username }) => {
-  // console.log(`${username} reacted with ${reaction._emoji.name}`);
+  console.log(`${username} reacted with ${reaction._emoji.name}`);
 });
 
 client.login(process.env.DISCORD_TOKEN);
