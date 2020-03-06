@@ -43,7 +43,7 @@ client.on("raw", async payload => {
   const { t } = payload;
   if (t === "MESSAGE_REACTION_ADD") {
     const msgId = payload.d.message_id;
-
+    // hard coded temporarily for testing purposes
     if (msgId === "685565044125335715") {
       const channelId = payload.d.channel_id;
       let channel = client.channels.cache.get(channelId);
